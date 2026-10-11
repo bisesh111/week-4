@@ -1,0 +1,133 @@
+:root {
+    --speed: 0.6s;
+    --radius: 14px;
+    --ink: #20242c;
+    --page: #eef1f5;
+    --highlight: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    color: var(--ink);
+    background: var(--page);
+}
+
+.wrap {
+    width: min(92%, 52rem);
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+h1 {
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Outer box: stretches to the width of its parent */
+.carousel {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #10131a;
+}
+
+/* Frame hides every photo except the one in view */
+.carousel__frame {
+    overflow: hidden;
+}
+
+/* Rail lines the photos up in one row; --index decides the offset */
+.carousel__rail {
+    --index: 1;
+    display: flex;
+    transform: translateX(calc(var(--index) * -100%));
+    transition: transform var(--speed) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel__rail.is-instant {
+    transition: none;
+}
+
+.carousel__rail img {
+    flex: 0 0 100%;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+/* Arrows sit on the left and right edges */
+.carousel__arrow {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    color: #fff;
+    background: rgba(16, 19, 26, 0.55);
+    cursor: pointer;
+}
+
+.carousel__arrow:hover,
+.carousel__arrow:focus-visible {
+    background: rgba(16, 19, 26, 0.85);
+}
+
+.carousel__arrow--left  { left: 0.6rem; }
+.carousel__arrow--right { right: 0.6rem; }
+
+/* Pager dots over the bottom of the photo */
+.carousel__pager {
+    position: absolute;
+    inset: auto 0 0.8rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.55rem;
+}
+
+.carousel__pager button {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border: 2px solid var(--highlight);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.25s, scale 0.25s;
+}
+
+.carousel__pager button[aria-current="true"] {
+    background: var(--highlight);
+    scale: 1.25;
+}
+
+@media (max-width: 600px) {
+    .carousel__rail img {
+        aspect-ratio: 4 / 3;
+    }
+
+    .carousel__arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+}
+
+/* The slide becomes almost instant, but transitionend still fires */
+@media (prefers-reduced-motion: reduce) {
+    .carousel__rail {
+        transition-duration: 0.01ms;
+    }
+}

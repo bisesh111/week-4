@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider images</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="slider.js" defer></script>
+</head>
+<body>
+    <main class="wrap">
+        <h1>Slider images</h1>
+
+        <section class="carousel" data-carousel aria-label="Landscape photos">
+            <div class="carousel__frame">
+                <div class="carousel__rail">
+                    <img src="images/images.jpeg" alt="Sunrise over layered hills">
+                    <img src="images/images-2.jpeg" alt="Blue lake and distant ridges">
+                    <img src="images/images-3.jpeg" alt="Green forest valley">
+                    <img src="images/images-4.jpeg" alt="Pink dusk sky over mountains">
+                </div>
+            </div>
+
+            <button class="carousel__arrow carousel__arrow--left" type="button" aria-label="Previous photo">&#8592;</button>
+            <button class="carousel__arrow carousel__arrow--right" type="button" aria-label="Next photo">&#8594;</button>
+
+            <div class="carousel__pager"></div>
+        </section>
+    </main>
+</body>
+</html>
